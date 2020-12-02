@@ -6,17 +6,21 @@ import java.util.ArrayList;
 import java.lang.Math;
 import tsp.tools.disp;
 import tsp.tools.setData;
+import javax.swing.JOptionPane;
+import java.lang.Thread;
 public class main
 {
 	protected static int start;
 	protected static int vnearNumber;
 	public static void main(String[] args) 
 	{
+		
+		
 		HashSet<String> v=new HashSet<String>();
 		HashMap s=new HashMap();
 		Scanner in=new Scanner(System.in);
+		Horse but=new Horse();
 		long time1,time2;
-		time1=System.currentTimeMillis();
 		
 		vnearNumber=in.nextInt();
 		start=in.nextInt()-1;
@@ -29,7 +33,7 @@ public class main
 		{
 			int j=0;
 			String temp=in.nextLine();
-			for(String str:temp.split(","))
+			for(String str:temp.split(" "))
 			{
 				W[i][j++]=Integer.valueOf(str);
 			}
@@ -41,11 +45,12 @@ public class main
 		}																			//*
 		setData d1=new setData();
 		d1.init();
+		time1=System.currentTimeMillis();
+		but.start();
 		/*for(int i=0;i<d1.A.length;i++)
 		{
 			System.out.println(d1.s.get(d1.A[i]));
 		}*/
-
 		for(int k=0;k<d1.A.length;k++)
 		{
 			ArrayList<Integer> temp=new ArrayList<Integer>();
@@ -83,21 +88,9 @@ public class main
 			}
 		}
 		D[0][(int) d1.s.get(d1.A[d1.A.length-1])]=min;
-		//disp.printTwoArray(P);
-		int count=0;
-		int i=(int) d1.s.get(d1.A[d1.A.length-1]);
-		ArrayList<Integer> temp=new ArrayList<Integer>();
-		temp.addAll(d1.A[d1.A.length-1]);
-		System.out.print("V1 -->");
-		while(true)
-		{
-			if(temp.isEmpty())break;
-			System.out.print("V" + P[count][i] + "--> ");
-			Integer n=P[count][i];
-			count=P[count][i]-1;
-			temp.remove(n);
-			i=(int) (temp.isEmpty()?0:d1.s.get(temp));
-		}
+		
+		disp.PrintP(d1, P);;
+		
 		time2=System.currentTimeMillis();
 		System.out.print("V1");
 		System.out.print("\n");
@@ -125,5 +118,13 @@ public class main
 			System.out.print(j+ " ");
 		}*/
 	}
-
 }
+
+
+class Horse extends Thread
+{
+	public void run()
+	{
+	 JOptionPane.showMessageDialog(null, "預計最久需要計算" + (Math.pow(main.vnearNumber, 2)*Math.pow(2, main.vnearNumber)*0.0000000235) + "秒", "提示", JOptionPane.INFORMATION_MESSAGE);
+	}
+} 
