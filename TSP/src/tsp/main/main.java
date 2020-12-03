@@ -24,7 +24,7 @@ public class main
 		
 		vnearNumber=in.nextInt();
 		start=in.nextInt()-1;
-		String cas=in.nextLine();
+		in.nextLine();
 		int[][] W=new int[vnearNumber][vnearNumber];
 		int[][] D=new int[vnearNumber][(int) (Math.pow(2,vnearNumber-1))];
 		int[][] P=new int[vnearNumber][(int) (Math.pow(2,vnearNumber-1))];
@@ -33,9 +33,9 @@ public class main
 		{
 			int j=0;
 			String temp=in.nextLine();
-			for(String str:temp.split(" "))
+			for(String str:temp.split(","))
 			{
-				W[i][j++]=Integer.valueOf(str);
+				W[i][j++]=str.equals("INF")?Integer.MAX_VALUE/1000:Integer.valueOf(str);
 			}
 		}
 		for(int i=0;i<vnearNumber;i++)												//*
@@ -60,7 +60,7 @@ public class main
 			{
 				if(i==start+1)continue;
 				//System.out.println(i);
-				int min=999_999;
+				int min=Integer.MAX_VALUE;
 				for(int j=0;j<d1.A[k].size();j++)
 				{
 					ArrayList<Integer> temp1=new ArrayList<Integer>();
@@ -88,13 +88,13 @@ public class main
 			}
 		}
 		D[0][(int) d1.s.get(d1.A[d1.A.length-1])]=min;
-		
+		System.out.print("最短路徑為: ");
 		disp.PrintP(d1, P);;
 		
 		time2=System.currentTimeMillis();
 		System.out.print("V1");
 		System.out.print("\n");
-		System.out.println(min);
+		System.out.println("最短距離為: " +min);
 		System.out.println("計算時間為: " + (time2-time1)/1000.0 + "秒");
 		System.out.println("請按任意鍵繼續");
 		String str = in.next();
