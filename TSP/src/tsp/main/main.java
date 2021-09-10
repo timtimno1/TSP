@@ -97,7 +97,7 @@ public class main
 		System.out.println("最短距離為: " +min);
 		System.out.println("計算時間為: " + (time2-time1)/1000.0 + "秒");
 		System.out.println("請按任意鍵繼續");
-		String str = in.next();
+		in.nextLine();
 		//d1.A[6].remove(0);
 		//System.out.println(d1.s.get(d1.A[6]));
 		//d1.A[6].removeAll(d1.A[0]);
